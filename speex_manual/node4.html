@@ -1,0 +1,460 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Codec description</TITLE>
+<META NAME="description" CONTENT="Codec description">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html233"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html227"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html221"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html229"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html231"
+  HREF="node17.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html234"
+  HREF="node5.html">Compiling</A>
+<B> Up:</B> <A NAME="tex2html228"
+  HREF="manual.html">The Speex Codec Manual</A>
+<B> Previous:</B> <A NAME="tex2html222"
+  HREF="node3.html">Introduction to Speex</A>
+ &nbsp; <B>  <A NAME="tex2html230"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html232"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html235"
+  HREF="node4.html#SECTION00410000000000000000">Concepts</A>
+<UL>
+<LI><A NAME="tex2html236"
+  HREF="node4.html#SECTION00411000000000000000">Sampling rate</A>
+<LI><A NAME="tex2html237"
+  HREF="node4.html#SECTION00412000000000000000">Bit-rate</A>
+<LI><A NAME="tex2html238"
+  HREF="node4.html#SECTION00413000000000000000">Quality (variable)</A>
+<LI><A NAME="tex2html239"
+  HREF="node4.html#SECTION00414000000000000000">Complexity (variable)</A>
+<LI><A NAME="tex2html240"
+  HREF="node4.html#SECTION00415000000000000000">Variable Bit-Rate (VBR)</A>
+<LI><A NAME="tex2html241"
+  HREF="node4.html#SECTION00416000000000000000">Average Bit-Rate (ABR)</A>
+<LI><A NAME="tex2html242"
+  HREF="node4.html#SECTION00417000000000000000">Voice Activity Detection (VAD)</A>
+<LI><A NAME="tex2html243"
+  HREF="node4.html#SECTION00418000000000000000">Discontinuous Transmission (DTX)</A>
+<LI><A NAME="tex2html244"
+  HREF="node4.html#SECTION00419000000000000000">Perceptual enhancement</A>
+<LI><A NAME="tex2html245"
+  HREF="node4.html#SECTION004110000000000000000">Latency and algorithmic delay</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html246"
+  HREF="node4.html#SECTION00420000000000000000">Codec</A>
+<LI><A NAME="tex2html247"
+  HREF="node4.html#SECTION00430000000000000000">Preprocessor</A>
+<LI><A NAME="tex2html248"
+  HREF="node4.html#SECTION00440000000000000000">Adaptive Jitter Buffer</A>
+<LI><A NAME="tex2html249"
+  HREF="node4.html#SECTION00450000000000000000">Acoustic Echo Canceller</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00400000000000000000"></A><A NAME="sec:Feature-description"></A>
+<BR>
+Codec description
+</H1>
+
+<P>
+This section describes Speex and its features into more details.
+
+<P>
+
+<H1><A NAME="SECTION00410000000000000000">
+Concepts</A>
+</H1>
+
+<P>
+Before introducing all the Speex features, here are some concepts
+in speech coding that help better understand the rest of the manual.
+Although some are general concepts in speech/audio processing, others
+are specific to Speex.
+
+<P>
+
+<H2><A NAME="SECTION00411000000000000000"></A><A NAME="65"></A>
+<BR>
+Sampling rate
+</H2>
+
+<P>
+The sampling rate expressed in Hertz (Hz) is the number of samples
+taken from a signal per second. For a sampling rate of <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$ F_{s}$"></SPAN>
+ kHz,
+the highest frequency that can be represented is equal to <SPAN CLASS="MATH"><IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$ F_{s}/2$"></SPAN>
+
+kHz (<SPAN CLASS="MATH"><IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$ F_{s}/2$"></SPAN>
+ is known as the Nyquist frequency). This is a fundamental
+property in signal processing and is described by the sampling theorem.
+Speex is mainly designed for three different sampling rates: 8 kHz,
+16 kHz, and 32 kHz. These are respectively refered to as narrowband<A NAME="69"></A>,
+wideband<A NAME="70"></A> and ultra-wideband<A NAME="71"></A>. 
+
+<P>
+
+<H2><A NAME="SECTION00412000000000000000">
+Bit-rate</A>
+</H2>
+
+<P>
+When encoding a speech signal, the bit-rate is defined as the number
+of bits per unit of time required to encode the speech. It is measured
+in <SPAN  CLASS="textit">bits per second</SPAN> (bps), or generally <SPAN  CLASS="textit">kilobits per second</SPAN>.
+It is important to make the distinction between <SPAN  CLASS="textit">kilo</SPAN><SPAN  CLASS="textbf"><SPAN  CLASS="textit">bits</SPAN></SPAN>
+<SPAN  CLASS="textit">per second</SPAN> (k<SPAN  CLASS="textbf">b</SPAN>ps) and <SPAN  CLASS="textit">kilo</SPAN><SPAN  CLASS="textbf"><SPAN  CLASS="textit">bytes</SPAN></SPAN>
+<SPAN  CLASS="textit">per second</SPAN> (k<SPAN  CLASS="textbf">B</SPAN>ps).
+
+<P>
+
+<H2><A NAME="SECTION00413000000000000000"></A><A NAME="83"></A>
+<BR>
+Quality (variable)
+</H2>
+
+<P>
+Speex is a lossy codec, which means that it achives compression at
+the expense of fidelity of the input speech signal. Unlike some other
+speech codecs, it is possible to control the tradeoff made between
+quality and bit-rate. The Speex encoding process is controlled most
+of the time by a quality parameter that ranges from 0 to 10. In constant
+bit-rate<A NAME="84"></A> (CBR) operation, the quality parameter
+is an integer, while for variable bit-rate (VBR), the parameter is
+a float. 
+
+<P>
+
+<H2><A NAME="SECTION00414000000000000000"></A><A NAME="85"></A>
+<BR>
+Complexity (variable)
+</H2>
+
+<P>
+With Speex, it is possible to vary the complexity allowed for the
+encoder. This is done by controlling how the search is performed with
+an integer ranging from 1 to 10 in a way that's similar to the -1
+to -9 options to <SPAN  CLASS="textit">gzip</SPAN> and <SPAN  CLASS="textit">bzip2</SPAN> compression utilities.
+For normal use, the noise level at complexity 1 is between 1 and 2
+dB higher than at complexity 10, but the CPU requirements for complexity
+10 is about 5 times higher than for complexity 1. In practice, the
+best trade-off is between complexity 2 and 4, though higher settings
+are often useful when encoding non-speech sounds like DTMF<A NAME="88"></A>
+tones.
+
+<P>
+
+<H2><A NAME="SECTION00415000000000000000"></A><A NAME="89"></A>
+<BR>
+Variable Bit-Rate (VBR)
+</H2>
+
+<P>
+Variable bit-rate (VBR) allows a codec to change its bit-rate dynamically
+to adapt to the ``difficulty'' of the audio being encoded. In
+the example of Speex, sounds like vowels and high-energy transients
+require a higher bit-rate to achieve good quality, while fricatives
+(e.g. s,f sounds) can be coded adequately with less bits. For this
+reason, VBR can achive lower bit-rate for the same quality, or a better
+quality for a certain bit-rate. Despite its advantages, VBR has two
+main drawbacks: first, by only specifying quality, there's no guaranty
+about the final average bit-rate. Second, for some real-time applications
+like voice over IP (VoIP), what counts is the maximum bit-rate, which
+must be low enough for the communication channel.
+
+<P>
+
+<H2><A NAME="SECTION00416000000000000000"></A><A NAME="91"></A>
+<BR>
+Average Bit-Rate (ABR)
+</H2>
+
+<P>
+Average bit-rate solves one of the problems of VBR, as it dynamically
+adjusts VBR quality in order to meet a specific target bit-rate. Because
+the quality/bit-rate is adjusted in real-time (open-loop), the global
+quality will be slightly lower than that obtained by encoding in VBR
+with exactly the right quality setting to meet the target average
+bit-rate.
+
+<P>
+
+<H2><A NAME="SECTION00417000000000000000"></A><A NAME="92"></A>
+<BR>
+Voice Activity Detection (VAD)
+</H2>
+
+<P>
+When enabled, voice activity detection detects whether the audio being
+encoded is speech or silence/background noise. VAD is always implicitly
+activated when encoding in VBR, so the option is only useful in non-VBR
+operation. In this case, Speex detects non-speech periods and encode
+them with just enough bits to reproduce the background noise. This
+is called ``comfort noise generation'' (CNG).
+
+<P>
+
+<H2><A NAME="SECTION00418000000000000000"></A><A NAME="94"></A>
+<BR>
+Discontinuous Transmission (DTX)
+</H2>
+
+<P>
+Discontinuous transmission is an addition to VAD/VBR operation, that
+allows to stop transmitting completely when the background noise is
+stationary. In file-based operation, since we cannot just stop writing
+to the file, only 5 bits are used for such frames (corresponding to
+250 bps).
+
+<P>
+
+<H2><A NAME="SECTION00419000000000000000"></A><A NAME="95"></A>
+<BR>
+Perceptual enhancement
+</H2>
+
+<P>
+Perceptual enhancement is a part of the decoder which, when turned
+on, attempts to reduce the perception of the noise/distortion produced
+by the encoding/decoding process. In most cases, perceptual enhancement
+brings the sound further from the original <SPAN  CLASS="textit">objectively</SPAN> (e.g.
+considering only SNR), but in the end it still <SPAN  CLASS="textit">sounds</SPAN> better
+(subjective improvement).
+
+<P>
+
+<H2><A NAME="SECTION004110000000000000000"></A><A NAME="98"></A>
+<BR>
+Latency and algorithmic delay
+</H2>
+
+<P>
+Every speech codec introduces a delay in the transmission. For Speex,
+this delay is equal to the frame size, plus some amount of ``look-ahead''
+required to process each frame. In narrowband operation (8 kHz), the
+delay is 30 ms, while for wideband (16 kHz), the delay is 34 ms. These
+values don't account for the CPU time it takes to encode or decode
+the frames.
+
+<P>
+
+<H1><A NAME="SECTION00420000000000000000">
+Codec</A>
+</H1>
+
+<P>
+The main characteristics of Speex can be summarized as follows:
+
+<P>
+
+<UL>
+<LI>Free software/open-source<A NAME="102"></A>, patent<A NAME="103"></A>
+and royalty-free
+</LI>
+<LI>Integration of narrowband<A NAME="104"></A> and wideband<A NAME="105"></A>
+using an embedded bit-stream
+</LI>
+<LI>Wide range of bit-rates available (from 2.15 kbps to 44 kbps)
+</LI>
+<LI>Dynamic bit-rate switching (AMR) and Variable Bit-Rate<A NAME="106"></A>
+(VBR) operation
+</LI>
+<LI>Voice Activity Detection<A NAME="107"></A> (VAD, integrated
+with VBR) and discontinuous transmission (DTX)
+</LI>
+<LI>Variable complexity<A NAME="108"></A>
+</LI>
+<LI>Embedded wideband structure (scalable sampling rate)
+</LI>
+<LI>Ultra-wideband mode at 32 kHz
+</LI>
+<LI>Intensity stereo encoding option
+</LI>
+<LI>Fixed-point implementation
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00430000000000000000">
+Preprocessor</A>
+</H1>
+
+<P>
+This part refers to the preprocessor module introduced in the 1.1.x
+branch. The preprocessor is designed to be used on the audio <SPAN  CLASS="textit">before</SPAN>
+running the encoder. The preprocessor provides three main functionalities:
+
+<P>
+
+<UL>
+<LI>noise suppression
+</LI>
+<LI>automatic gain control (AGC)
+</LI>
+<LI>voice activity detection (VAD)
+</LI>
+</UL>
+The denoiser can be used to reduce the amount of background noise
+present in the input signal. This provides higher quality speech whether
+or not the denoised signal is encoded with Speex (or at all). However,
+when using the denoised signal with the codec, there is an additional
+benefit. Speech codecs in general (Speex included) tend to perform
+poorly on noisy input, which tends to amplify the noise. The denoiser
+greatly reduces this effect.
+
+<P>
+Automatic gain control (AGC) is a feature that deals with the fact
+that the recording volume may vary by a large amount between different
+setups. The AGC provides a way to adjust a signal to a reference volume.
+This is useful for voice over IP because it removes the need for manual
+adjustment of the microphone gain. A secondary advantage is that by
+setting the microphone gain to a conservative (low) level, it is easier
+to avoid clipping.
+
+<P>
+The voice activity detector (VAD) provided by the preprocessor is
+more advanced than the one directly provided in the codec. 
+
+<P>
+
+<H1><A NAME="SECTION00440000000000000000">
+Adaptive Jitter Buffer</A>
+</H1>
+
+<P>
+When transmitting voice (or any content for that matter) over UDP
+or RTP, packet may be lost, arrive with different delay, or even out
+of order. The purpose of a jitter buffer is to reorder packets and
+buffer them long enough (but no longer than necessary) so they can
+be sent to be decoded. 
+
+<P>
+
+<H1><A NAME="SECTION00450000000000000000">
+Acoustic Echo Canceller</A>
+</H1>
+
+<P>
+In any hands-free communication system (Fig. <A HREF="#fig:Acoustic-echo-model"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+speech from the remote end is played in the local loudspeaker, propagates
+in the room and is captured by the microphone. If the audio captured
+from the microphone is sent directly to the remote end, then the remove
+user hears an echo of his voice. An acoustic echo canceller is designed
+to remove the acoustic echo before it is sent to the remote end. It
+is important to understand that the echo canceller is meant to improve
+the quality on the <SPAN  CLASS="textbf">remote</SPAN> end.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:Acoustic-echo-model"></A><A NAME="890"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure:</STRONG>
+Acoustic echo model</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="430" HEIGHT="242" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="\includegraphics[width=10cm]{echo_path}">
+</DIV>
+
+<P></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html233"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html227"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html221"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html229"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html231"
+  HREF="node17.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html234"
+  HREF="node5.html">Compiling</A>
+<B> Up:</B> <A NAME="tex2html228"
+  HREF="manual.html">The Speex Codec Manual</A>
+<B> Previous:</B> <A NAME="tex2html222"
+  HREF="node3.html">Introduction to Speex</A>
+ &nbsp; <B>  <A NAME="tex2html230"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html232"
+  HREF="node17.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Jean-Marc Valin
+2007-05-23
+</ADDRESS>
+</BODY>
+</HTML>

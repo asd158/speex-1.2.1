@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Command-line encoder/decoder</TITLE>
+<META NAME="description" CONTENT="Command-line encoder/decoder">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html277"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html271"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html265"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html273"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html275"
+  HREF="node17.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html278"
+  HREF="node7.html">Programming with Speex (the</A>
+<B> Up:</B> <A NAME="tex2html272"
+  HREF="manual.html">The Speex Codec Manual</A>
+<B> Previous:</B> <A NAME="tex2html266"
+  HREF="node5.html">Compiling</A>
+ &nbsp; <B>  <A NAME="tex2html274"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html276"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html279"
+  HREF="node6.html#SECTION00610000000000000000"><SPAN  CLASS="textit">speexenc</SPAN></A>
+<UL>
+<LI><A NAME="tex2html280"
+  HREF="node6.html#SECTION00611000000000000000">Speex comments</A>
+<LI><A NAME="tex2html281"
+  HREF="node6.html#SECTION00612000000000000000">Raw input options</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html282"
+  HREF="node6.html#SECTION00620000000000000000"><SPAN  CLASS="textit">speexdec</SPAN></A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00600000000000000000"></A><A NAME="sec:Command-line-encoder_decoder"></A>
+<BR>
+Command-line encoder/decoder
+</H1>
+
+<P>
+The base Speex distribution includes a command-line encoder (<SPAN  CLASS="textit">speexenc</SPAN>)
+and decoder (<SPAN  CLASS="textit">speexdec</SPAN>). This section describes how to use these
+tools.
+
+<P>
+
+<H1><A NAME="SECTION00610000000000000000"></A><A NAME="156"></A>
+<BR>
+<SPAN  CLASS="textit">speexenc</SPAN>
+</H1>
+
+<P>
+The <SPAN  CLASS="textit">speexenc</SPAN> utility is used to create Speex files from raw
+PCM or wave files. It can be used by calling: 
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>speexenc&nbsp;[options]&nbsp;input_file&nbsp;output_file
+</DD>
+</DL>The value '-' for input_file or output_file corresponds respectively
+to stdin and stdout. The valid options are:
+
+<P>
+<DL>
+<DT><STRONG>-narrowband&nbsp;(-n)</STRONG></DT>
+<DD>Tell Speex to treat the input as narrowband
+(8 kHz). This is the default
+</DD>
+<DT><STRONG>-wideband&nbsp;(-w)</STRONG></DT>
+<DD>Tell Speex to treat the input as wideband (16
+kHz)
+</DD>
+<DT><STRONG>-ultra-wideband&nbsp;(-u)</STRONG></DT>
+<DD>Tell Speex to treat the input as ``ultra-wideband''
+(32 kHz)
+</DD>
+<DT><STRONG>-quality&nbsp;n</STRONG></DT>
+<DD>Set the encoding quality (0-10), default is 8
+</DD>
+<DT><STRONG>-bitrate&nbsp;n</STRONG></DT>
+<DD>Encoding bit-rate (use bit-rate n or lower) 
+</DD>
+<DT><STRONG>-vbr</STRONG></DT>
+<DD>Enable VBR (Variable Bit-Rate), disabled by default
+</DD>
+<DT><STRONG>-abr&nbsp;n</STRONG></DT>
+<DD>Enable ABR (Average Bit-Rate) at n kbps, disabled by
+default
+</DD>
+<DT><STRONG>-vad</STRONG></DT>
+<DD>Enable VAD (Voice Activity Detection), disabled by default
+</DD>
+<DT><STRONG>-dtx</STRONG></DT>
+<DD>Enable DTX (Discontinuous Transmission), disabled by default
+</DD>
+<DT><STRONG>-nframes&nbsp;n</STRONG></DT>
+<DD>Pack n frames in each Ogg packet (this saves space
+at low bit-rates)
+</DD>
+<DT><STRONG>-comp&nbsp;n</STRONG></DT>
+<DD>Set encoding speed/quality tradeoff. The higher the
+value of n, the slower the encoding (default is 3)
+</DD>
+<DT><STRONG>-V</STRONG></DT>
+<DD>Verbose operation, print bit-rate currently in use
+</DD>
+<DT><STRONG>-help&nbsp;(-h)</STRONG></DT>
+<DD>Print the help
+</DD>
+<DT><STRONG>-version&nbsp;(-v)</STRONG></DT>
+<DD>Print version information
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00611000000000000000">
+Speex comments</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>-comment</STRONG></DT>
+<DD>Add the given string as an extra comment. This may
+be used multiple times. 
+</DD>
+<DT><STRONG>-author</STRONG></DT>
+<DD>Author of this track. 
+</DD>
+<DT><STRONG>-title</STRONG></DT>
+<DD>Title for this track. 
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00612000000000000000">
+Raw input options</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>-rate&nbsp;n</STRONG></DT>
+<DD>Sampling rate for raw input
+</DD>
+<DT><STRONG>-stereo</STRONG></DT>
+<DD>Consider raw input as stereo 
+</DD>
+<DT><STRONG>-le</STRONG></DT>
+<DD>Raw input is little-endian 
+</DD>
+<DT><STRONG>-be</STRONG></DT>
+<DD>Raw input is big-endian 
+</DD>
+<DT><STRONG>-8bit</STRONG></DT>
+<DD>Raw input is 8-bit unsigned 
+</DD>
+<DT><STRONG>-16bit</STRONG></DT>
+<DD>Raw input is 16-bit signed 
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00620000000000000000"></A><A NAME="193"></A>
+<BR>
+<SPAN  CLASS="textit">speexdec</SPAN>
+</H1>
+
+<P>
+The <SPAN  CLASS="textit">speexdec</SPAN> utility is used to decode Speex files and can
+be used by calling: 
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>speexdec&nbsp;[options]&nbsp;speex_file&nbsp;[output_file]
+</DD>
+</DL>The value '-' for input_file or output_file corresponds respectively
+to stdin and stdout. Also, when no output_file is specified, the
+file is played to the soundcard. The valid options are:
+
+<P>
+<DL>
+<DT><STRONG>-enh</STRONG></DT>
+<DD>enable post-filter (default)
+</DD>
+<DT><STRONG>-no-enh</STRONG></DT>
+<DD>disable post-filter
+</DD>
+<DT><STRONG>-force-nb</STRONG></DT>
+<DD>Force decoding in narrowband 
+</DD>
+<DT><STRONG>-force-wb</STRONG></DT>
+<DD>Force decoding in wideband 
+</DD>
+<DT><STRONG>-force-uwb</STRONG></DT>
+<DD>Force decoding in ultra-wideband 
+</DD>
+<DT><STRONG>-mono</STRONG></DT>
+<DD>Force decoding in mono 
+</DD>
+<DT><STRONG>-stereo</STRONG></DT>
+<DD>Force decoding in stereo 
+</DD>
+<DT><STRONG>-rate&nbsp;n</STRONG></DT>
+<DD>Force decoding at n Hz sampling rate
+</DD>
+<DT><STRONG>-packet-loss&nbsp;n</STRONG></DT>
+<DD>Simulate n % random packet loss
+</DD>
+<DT><STRONG>-V</STRONG></DT>
+<DD>Verbose operation, print bit-rate currently in use
+</DD>
+<DT><STRONG>-help&nbsp;(-h)</STRONG></DT>
+<DD>Print the help
+</DD>
+<DT><STRONG>-version&nbsp;(-v)</STRONG></DT>
+<DD>Print version information
+</DD>
+</DL>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html277"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html271"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html265"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html273"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html275"
+  HREF="node17.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html278"
+  HREF="node7.html">Programming with Speex (the</A>
+<B> Up:</B> <A NAME="tex2html272"
+  HREF="manual.html">The Speex Codec Manual</A>
+<B> Previous:</B> <A NAME="tex2html266"
+  HREF="node5.html">Compiling</A>
+ &nbsp; <B>  <A NAME="tex2html274"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html276"
+  HREF="node17.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Jean-Marc Valin
+2007-05-23
+</ADDRESS>
+</BODY>
+</HTML>
