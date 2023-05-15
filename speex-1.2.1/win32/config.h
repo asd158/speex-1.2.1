@@ -1,3 +1,4 @@
+#include "config_win.h"
 // Microsoft version of 'inline'
 #define inline __inline
 
